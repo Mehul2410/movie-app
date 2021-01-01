@@ -43,15 +43,6 @@ const MOVIE_DATA = [
 ];
 
 export default function Home() {
-  const [count, setCount] = useState(0);
-  const increment = () => {
-    setCount(count + 1);
-  };
-
-  const decrement = () => {
-    setCount(count - 1);
-  };
-
   return (
     <div>
       <Head>
@@ -82,32 +73,16 @@ export default function Home() {
       <Navbar />
 
       <div className="container">
-        <div>
-          <button onClick={increment} className="btn btn-primary">
-            Increment no
-          </button>
-
-          <button onClick={decrement} className="btn btn-primary">
-            Decrement no
-          </button>
-        </div>
-
         <div className="row">
           <div className="col-lg-3">
-            <SideMenu
-              appName={"Movie DB"}
-              clickHandler={() => {
-                console.log("hello world");
-              }}
-              count={count}
-            />
+            <SideMenu appName={"Movie DB"} />
           </div>
 
           <div className="col-lg-9">
             <Carousel />
 
             <div className="row">
-              <MovieList count={count} />
+              <MovieList movies={MOVIE_DATA} />
             </div>
           </div>
         </div>
