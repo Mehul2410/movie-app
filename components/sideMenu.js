@@ -1,9 +1,10 @@
 import { useState } from "react";
 
-const SideMenu = ({ count }) => {
+const SideMenu = (props) => {
   return (
     <div>
-      <h1 className="my-4">Shop Name</h1>
+      <button onClick={props.clickHandler}>clickme</button>
+      <h1 className="my-4">{props.appName}</h1>
       <div className="list-group">
         <a href="#" className="list-group-item">
           Category 1
@@ -16,7 +17,7 @@ const SideMenu = ({ count }) => {
         </a>
       </div>
       <div>
-        <h1>{count}</h1>
+        <h1>{props.count}</h1>
       </div>
     </div>
   );
