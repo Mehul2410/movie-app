@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import Carousel from "../components/carousel";
 import Navbar from "../components/navbar";
 import SideMenu from "../components/sideMenu";
@@ -7,6 +7,15 @@ import MovieList from "../components/movieList";
 import Footer from "../components/footer";
 
 export default function Home() {
+  const [count, setCount] = useState(0);
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  const decrement = () => {
+    setCount(count - 1);
+  };
+
   return (
     <div>
       <Head>
@@ -37,16 +46,26 @@ export default function Home() {
       <Navbar />
 
       <div className="container">
+        <div>
+          <button onClick={increment} className="btn btn-primary">
+            Increment no
+          </button>
+
+          <button onClick={decrement} className="btn btn-primary">
+            Decrement no
+          </button>
+        </div>
+
         <div className="row">
           <div className="col-lg-3">
-            <SideMenu />
+            <SideMenu count={count} />
           </div>
 
           <div className="col-lg-9">
             <Carousel />
 
             <div className="row">
-              <MovieList />
+              <MovieList count={count} />
             </div>
           </div>
         </div>

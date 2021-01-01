@@ -1,15 +1,6 @@
 import { useState } from "react";
 
-const SideMenu = () => {
-  const [count, setCount] = useState(0);
-
-  const increment = () => {
-    setCount(count + 1);
-  };
-
-  const decrement = () => {
-    setCount(count - 1);
-  };
+const SideMenu = ({ count }) => {
   return (
     <div>
       <h1 className="my-4">Shop Name</h1>
@@ -25,13 +16,6 @@ const SideMenu = () => {
         </a>
       </div>
       <div>
-        <button onClick={increment} className="btn btn-primary">
-          Increment no
-        </button>
-
-        <button onClick={decrement} className="btn btn-primary">
-          Decrement no
-        </button>
         <h1>{count}</h1>
       </div>
     </div>
