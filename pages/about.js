@@ -1,6 +1,7 @@
 import React from "react";
 
 // //functional component
+// for smaller and reusable components and presentional components
 // const About = () => {
 //   return React.createElement(
 //     "h1",
