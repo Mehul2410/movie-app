@@ -90,6 +90,7 @@ class Home extends React.Component {
   }
 
   render() {
+    const { movies } = this.state;
     return (
       <div>
         <Head>
@@ -136,7 +137,7 @@ class Home extends React.Component {
               <Carousel />
 
               <div className="row">
-                <MovieList movies={movies} />
+                <MovieList movies={this.state.movies} />
               </div>
             </div>
           </div>
