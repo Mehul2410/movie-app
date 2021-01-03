@@ -34,7 +34,7 @@ const Home = (props) => {
               <Carousel />
 
               <div className="row">
-                <MovieList movies={props.movies || []} />
+                <MovieList movies={props.movies} />
               </div>
             </div>
           </div>
