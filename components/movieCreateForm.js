@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const MovieCreateForm = () => {
+const MovieCreateForm = (props) => {
   const [form, setForm] = useState({
     name: "some movie",
     description: "hnbsvvdsca",
@@ -31,7 +31,11 @@ const MovieCreateForm = () => {
     });
   };
 
-  const submitForm = () => {};
+  const submitForm = () => {
+    // call here function to create movie from props
+
+    props.handleFormSubmit({ ...form });
+  };
 
   return (
     <form>
