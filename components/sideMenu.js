@@ -8,7 +8,7 @@ const SideMenu = (props) => {
   const { categories } = props;
   return (
     <div>
-      <Modal>
+      <Modal hasSubmit={false}>
         <MovieCreateForm />
       </Modal>
       <h1 className="my-4">{props.appName}</h1>

@@ -50,13 +50,15 @@ const Modal = (props) => {
               >
                 Close
               </button>
-              <button
-                onClick={submitModal}
-                type="button"
-                className="btn btn-primary"
-              >
-                Save changes
-              </button>
+              {props.hasSuubmit && (
+                <button
+                  onClick={submitModal}
+                  type="button"
+                  className="btn btn-primary"
+                >
+                  Save changes
+                </button>
+              )}
             </div>
           </div>
         </div>
