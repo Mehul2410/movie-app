@@ -2,8 +2,12 @@ import { useState } from "react";
 
 const MovieCreateForm = (props) => {
   const [form, setForm] = useState({
-    name: "some movie",
-    description: "hnbsvvdsca",
+    name: "",
+    description: "",
+    rating: "",
+    longDesc: "",
+    image: "",
+    cover: "",
   });
 
   const handleChange = (event) => {
@@ -41,7 +45,7 @@ const MovieCreateForm = (props) => {
     <form>
       {JSON.stringify(form)}
       <div className="form-group">
-        <label for="name">Name</label>
+        <label htmlFor="name">Name</label>
         <input
           onChange={handleChange}
           value={form.name}
@@ -54,7 +58,7 @@ const MovieCreateForm = (props) => {
         />
       </div>
       <div className="form-group">
-        <label for="description">Description</label>
+        <label htmlFor="description">Description</label>
         <input
           value={form.description}
           name="description"
@@ -66,7 +70,7 @@ const MovieCreateForm = (props) => {
         />
       </div>
       <div className="form-group">
-        <label for="description">Rating</label>
+        <label htmlFor="description">Rating</label>
         <input
           onChange={handleChange}
           value={form.rating}
@@ -83,7 +87,7 @@ const MovieCreateForm = (props) => {
         </small>
       </div>
       <div className="form-group">
-        <label for="image">Image</label>
+        <label htmlFor="image">Image</label>
         <input
           onChange={handleChange}
           value={form.image}
@@ -95,7 +99,7 @@ const MovieCreateForm = (props) => {
         />
       </div>
       <div className="form-group">
-        <label for="cover">Cover</label>
+        <label htmlFor="cover">Cover</label>
         <input
           onChange={handleChange}
           value={form.cover}
@@ -107,7 +111,7 @@ const MovieCreateForm = (props) => {
         />
       </div>
       <div className="form-group">
-        <label for="longDesc">Long Description</label>
+        <label htmlFor="longDesc">Long Description</label>
         <textarea
           onChange={handleChange}
           value={form.longDesc}
@@ -118,7 +122,7 @@ const MovieCreateForm = (props) => {
         ></textarea>
       </div>
       <div className="form-group">
-        <label for="genre">Genre</label>
+        <label htmlFor="genre">Genre</label>
         <select
           onChange={handleGenreChange}
           multiple
