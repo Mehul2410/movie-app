@@ -1,40 +1,22 @@
-import React, { useStatem, useEffect, useState } from "react";
-import Carousel from "../components/carousel";
-
+import React, { useState, useEffect } from "react";
 import SideMenu from "../components/sideMenu";
+import Carousel from "../components/carousel";
 import MovieList from "../components/movieList";
-
-import { getMovies } from "../actions";
-
+import { getMovies, getCategories } from "../actions";
 const Home = (props) => {
-  // const [movies, setMovies] = useState([]);
-  // const [count, setCount] = useState();
-
-  // useEffect(() => {
-  //   // getMovies().then((movies) => {
-  //   //   setMovies(movies);
-  //   // });
-  //   const fetchData = async () => {
-  //     const resMovies = await getMovies();
-  //     setMovies(resMovies);
-  //   };
-  //   fetchData();
-  // }, [count]);
-
+  const { images, categories, movies } = props;
   return (
     <div>
       <div className="home-page">
         <div className="container">
           <div className="row">
             <div className="col-lg-3">
-              <SideMenu appName={"Movie DB"} />
+              <SideMenu appName={"Movie DB"} categories={categories} />
             </div>
-
             <div className="col-lg-9">
-              <Carousel />
-
+              <Carousel images={images} />
               <div className="row">
-                <MovieList movies={props.movies} />
+                <MovieList movies={movies || []} />
               </div>
             </div>
           </div>
@@ -46,8 +28,17 @@ const Home = (props) => {
 
 Home.getInitialProps = async () => {
   const movies = await getMovies();
+  const categories = await getCategories();
+  const images = movies.map((movie) => ({
+    id: `image-${movie.id}`,
+    url: movie.cover,
+    name: movie.name,
+  }));
+
   return {
     movies,
+    images,
+    categories,
   };
 };
 
