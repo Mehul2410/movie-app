@@ -28,38 +28,55 @@ app.prepare().then(() => {
   });
 
   server.post("/api/v1/movies", (req, res) => {
+    //todo add id
     const movie = req.body;
     moviesData.push(movie);
-    return res.json({ ...movie, createdTime: "today", autor: "mehul" });
+
+    const pathToFile = path.join(__dirname, filePath);
+    const stringifiedData = JSON.stringify(moviesData, null, 2);
+    fs.writeFile(pathToFile, stringifiedData, (err) => {
+      if (err) {
+        return res.status(422).send(err);
+      }
+      return res.json("Movie has been successfuly added");
+    });
   });
 
   server.delete("/api/v1/movies/:id", (req, res) => {
     const { id } = req.params;
-
-    res.json({ message: ` deleting post id;${id}` });
+    const movie = moviesData.findIndex((m) => m.id === id);
+    moviesData.splice(movieIndex, 1);
+    const pathToFile = path.join(__dirname, filePath);
+    const stringifiedData = JSON.stringify(moviesData, null, 2);
+    fs.writeFile(pathToFile, stringifiedData, (err) => {
+      if (err) {
+        return res.status(422).send(err);
+      }
+      return res.json("Movie has been successfuly added");
+    });
   });
-  // server.get("/faq", (req, res) => {
-  //   res.send(
-  //     `<html>
-  //       <head>
-  //         <body>
-  //           <h1>hello world</h1>
-  //         </body>
-  //       </head>
-  //     </html>`
-  //   );
-  // });
+});
+// server.get("/faq", (req, res) => {
+//   res.send(
+//     `<html>
+//       <head>
+//         <body>
+//           <h1>hello world</h1>
+//         </body>
+//       </head>
+//     </html>`
+//   );
+// });
 
-  //    we are handling all of the request coming to our server by *
-  server.get("*", (req, res) => {
-    // nextjs is handling req and providing pages wherewe are navigating
-    return handle(req, res);
-  });
+//    we are handling all of the request coming to our server by *
+server.get("*", (req, res) => {
+  // nextjs is handling req and providing pages wherewe are navigating
+  return handle(req, res);
+});
 
-  const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-  server.use(handle).listen(PORT, (err) => {
-    if (err) throw err;
-    console.log("> Ready on port " + PORT);
-  });
+server.use(handle).listen(PORT, (err) => {
+  if (err) throw err;
+  console.log("> Ready on port " + PORT);
 });

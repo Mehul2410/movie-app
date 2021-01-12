@@ -1,10 +1,15 @@
 import { useRouter } from "next/router";
-import { getMovieById } from "../../actions";
+import { getMovieById, deleteMovie } from "../../actions";
 
 const Movie = (props) => {
   const router = useRouter();
   const { id } = router.query;
   const { movie } = props;
+  const handleDeleteMovie = (id) => {
+    deleteMovie(id).then(() => {});
+    router.push("/");
+  };
+
   return (
     <div className="container">
       <div className="jumbotron">
@@ -15,9 +20,17 @@ const Movie = (props) => {
           It uses utility classes for typography and spacing to space content
           out within the larger container.
         </p>
-        <a className="btn btn-primary btn-lg" href="#" role="button">
+        <button className="btn btn-primary btn-lg mr-1" href="#" role="button">
           Learn more
-        </a>
+        </button>
+        <button
+          onClick={() => handleDeleteMovie(id)}
+          className="btn btn-danger btn-lg"
+          href="#"
+          role="button"
+        >
+          Delete
+        </button>
       </div>
       <p className="desc-text">{movie.longDesc}</p>
       <style jsx>{`

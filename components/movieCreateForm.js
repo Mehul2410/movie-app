@@ -43,7 +43,6 @@ const MovieCreateForm = (props) => {
 
   return (
     <form>
-      {JSON.stringify(form)}
       <div className="form-group">
         <label for="name">Name</label>
         <input
