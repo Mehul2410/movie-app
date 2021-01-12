@@ -7,6 +7,9 @@ const bodyParser = require("body-parser");
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
+const filePath = "./data.json";
+const fs = require("fs");
+const path = require("path");
 
 const moviesData = require("./data.json");
 
@@ -26,7 +29,7 @@ app.prepare().then(() => {
 
   server.post("/api/v1/movies", (req, res) => {
     const movie = req.body;
-    console.log(JSON.stringify(movie));
+    moviesData.push(movie);
     return res.json({ ...movie, createdTime: "today", autor: "mehul" });
   });
 
