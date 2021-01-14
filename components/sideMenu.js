@@ -1,10 +1,10 @@
-import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Modal from "./modal";
-import { createMovie } from "../actions";
 import MovieCreateForm from "./movieCreateForm";
+import { createMovie } from "../actions";
 
+// Containment
 const SideMenu = (props) => {
   const { categories } = props;
   const router = useRouter();
@@ -19,18 +19,16 @@ const SideMenu = (props) => {
 
   return (
     <div>
-      <Modal ref={(elem) => (modal = elem)} hasSubmit={false}>
+      <Modal ref={(ele) => (modal = ele)} hasSubmit={false}>
         <MovieCreateForm handleFormSubmit={handleCreateMovie} />
       </Modal>
       <h1 className="my-4">{props.appName}</h1>
       <div className="list-group">
-        {categories.map((c) => {
-          return (
-            <Link key={c.id} href="/#">
-              <a className="list-group-item">{c.name}</a>
-            </Link>
-          );
-        })}
+        {categories.map((c) => (
+          <a key={c.id} href="#" className="list-group-item">
+            {c.name}
+          </a>
+        ))}
       </div>
     </div>
   );

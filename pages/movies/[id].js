@@ -5,9 +5,11 @@ const Movie = (props) => {
   const router = useRouter();
   const { id } = router.query;
   const { movie } = props;
+
   const handleDeleteMovie = (id) => {
-    deleteMovie(id).then(() => {});
-    router.push("/");
+    deleteMovie(id).then(() => {
+      router.push("/");
+    });
   };
 
   return (
@@ -16,10 +18,7 @@ const Movie = (props) => {
         <h1 className="display-4">{movie.name}</h1>
         <p className="lead">{movie.description}</p>
         <hr className="my-4" />
-        <p>
-          It uses utility classes for typography and spacing to space content
-          out within the larger container.
-        </p>
+        <p>{movie.genre}</p>
         <button className="btn btn-primary btn-lg mr-1" href="#" role="button">
           Learn more
         </button>
@@ -32,21 +31,30 @@ const Movie = (props) => {
           Delete
         </button>
       </div>
-      <p className="desc-text">{movie.longDesc}</p>
-      <style jsx>{`
-        .desc-texy {
-          font-size: 20px;
-        }
-      `}</style>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/OtrUlQgzVl4"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+      s<p className="desc-text">{movie.longDesc}</p>
+      <style jsx>
+        {`
+          .desc-text {
+            font-size: 21px;
+          }
+        `}
+      </style>
     </div>
   );
 };
 
 Movie.getInitialProps = async ({ query }) => {
   const movie = await getMovieById(query.id);
+
   return { movie };
 };
-
-//call getmoviebyid ("2")
 
 export default Movie;
