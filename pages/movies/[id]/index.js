@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { getMovieById, deleteMovie } from "../../actions";
+import { getMovieById, deleteMovie } from "../../../actions";
 
 const Movie = (props) => {
   const router = useRouter();
@@ -31,14 +31,6 @@ const Movie = (props) => {
           Delete
         </button>
       </div>
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/OtrUlQgzVl4"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
       s<p className="desc-text">{movie.longDesc}</p>
       <style jsx>
         {`

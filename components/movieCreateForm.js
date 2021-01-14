@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const MovieCreateForm = (props) => {
+  const [isInitialDataLoaded, setIsInitialDataLoaded] = useState(false);
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -9,6 +10,13 @@ const MovieCreateForm = (props) => {
     image: "",
     cover: "",
   });
+
+  useEffect(() => {
+    if (props.initialData) {
+      setForm(props.initialData);
+      setIsInitialDataLoaded(true);
+    }
+  }, [isInitialDataLoaded]);
 
   const handleChange = (event) => {
     const target = event.target;
