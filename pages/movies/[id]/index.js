@@ -24,14 +24,22 @@ const Movie = (props) => {
         </button>
         <button
           onClick={() => handleDeleteMovie(id)}
-          className="btn btn-danger btn-lg"
+          className="btn btn-danger btn-lg mr-1"
           href="#"
           role="button"
         >
           Delete
         </button>
+        <button
+          onClick={() => router.push(`/movies/${id}/edit`)}
+          className="btn btn-warning btn-lg"
+          href="#"
+          role="button"
+        >
+          Edit
+        </button>
       </div>
-      s<p className="desc-text">{movie.longDesc}</p>
+      <p className="desc-text">{movie.longDesc}</p>
       <style jsx>
         {`
           .desc-text {

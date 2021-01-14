@@ -1,28 +1,33 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-const MovieCreateForm = (props) => {
+const MovieCreateform = (props) => {
   const [isInitialDataLoaded, setIsInitialDataLoaded] = useState(false);
-  const [form, setForm] = useState({
+
+  const defaultData = {
     name: "",
     description: "",
     rating: "",
-    longDesc: "",
     image: "",
     cover: "",
-  });
+    longDesc: "",
+  };
 
-  useEffect(() => {
-    if (props.initialData) {
-      setForm(props.initialData);
-      setIsInitialDataLoaded(true);
-    }
-  }, [isInitialDataLoaded]);
+  const formData = props.initialData ? { ...props.initialData } : defaultData;
+
+  const [form, setform] = useState(formData);
+
+  // useEffect(() => {
+  //   if (props.initialData) {
+  //     setform(props.initialData)
+  //     setIsInitialDataLoaded(true)
+  //   }
+  // }, [isInitialDataLoaded])
 
   const handleChange = (event) => {
     const target = event.target;
     const name = target.name;
 
-    setForm({
+    setform({
       ...form,
       [name]: target.value,
     });
@@ -32,20 +37,20 @@ const MovieCreateForm = (props) => {
     const { options } = event.target;
     const optionsLength = options.length;
     let value = [];
+
     for (let i = 0; i < optionsLength; i++) {
       if (options[i].selected) {
         value.push(options[i].value);
       }
     }
-    setForm({
+
+    setform({
       ...form,
       genre: value.toString(),
     });
   };
 
-  const submitForm = () => {
-    // call here function to create movie from props
-
+  const submitform = () => {
     props.handleFormSubmit({ ...form });
   };
 
@@ -67,9 +72,9 @@ const MovieCreateForm = (props) => {
       <div className="form-group">
         <label for="description">Description</label>
         <input
+          onChange={handleChange}
           value={form.description}
           name="description"
-          onChange={handleChange}
           type="text"
           className="form-control"
           id="description"
@@ -143,11 +148,11 @@ const MovieCreateForm = (props) => {
           <option>action</option>
         </select>
       </div>
-      <button onClick={submitForm} type="button" className="btn btn-primary">
+      <button onClick={submitform} type="button" className="btn btn-primary">
         Create
       </button>
     </form>
   );
 };
 
-export default MovieCreateForm;
+export default MovieCreateform;
